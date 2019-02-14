@@ -14,17 +14,22 @@ class Game {
     //Comprobamos k ejecuta el loop
     console.log("execute loop");
     
+    this.player = new Player(this.canvas, 1);
     const loop = () => {
       //dentro del loop
-      console.log("dentro del loop");
+      //console.log("dentro del loop");
       this.updateCanvas();
       this.clearCanvas();
       this.drawCanvas();
+      if(!this.isGameOver){
+        window.requestAnimationFrame(loop);
+      }
     }
     window.requestAnimationFrame(loop);
   };
 
   updateCanvas(){
+    this.player.update();
   };
 
   clearCanvas(){
@@ -32,7 +37,12 @@ class Game {
   };
 
   drawCanvas(){
+    this.player.draw();
 
+  };
+
+  checkAllCollisions(){
+    this.player.checkCollisionScreen();
   };
 
   gameOverCallBack(callback){
