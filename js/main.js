@@ -49,19 +49,41 @@ const main = () => {
 
     game.startLoop();
 
-    //crearemos el salto
+    //movimiento lateral, en eje de X
     const setPlayerDirection = (event) => {
-      if (event.code === 'ArrowUp') {
+      if (event.code === 'ArrowLeft') {
           game.player.setDirection(-1);
-      } else if (event.code === 'ArrowDown') {
+          game.player.x--;
+      } else if (event.code === 'ArrowRight') {
           game.player.setDirection(1);
+          game.player.x++;
       };
     };
 
+    //parar el jugador
+    const stop = (event) => {
+      if(event.code === 'ArrowLeft' || event.code === "ArrowRight"){
+        game.player.setDirection(0);
+      }
+    };
+
+    //saltar - si se apreta 'space' y no esta saltando, salta
+        const jump = (event) => {
+      if (event.code === 'Space' && game.player.noJumping === true){
+        game.player.jump = -10;
+        game.player.y = game.player.y - 1;
+        game.player.noJumping = false;
+      }
+    }
+
     document.addEventListener('keydown',setPlayerDirection);
+    document.addEventListener('keyup',stop);
+    document.addEventListener('keydown', jump);
+
+    
   };
   
-  //Crea la pantall de Game Over
+  //Crea la pantalla de Game Over
   const buildGameOver = () => {
     const gameOverScreen = buildDom(`
     <section class="game-over">

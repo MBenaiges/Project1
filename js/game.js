@@ -18,6 +18,7 @@ class Game {
     const loop = () => {
       //dentro del loop
       //console.log("dentro del loop");
+      this.checkAllCollisions();
       this.updateCanvas();
       this.clearCanvas();
       this.drawCanvas();
