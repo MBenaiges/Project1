@@ -13,8 +13,8 @@ class Game {
   startLoop(){
     //Comprobamos k ejecuta el loop
     console.log("execute loop");
-    
-    this.player = new Player(this.canvas, 1);
+    this.map = new Map (this.canvas);
+    this.player = new Player(this.canvas, 3);  //vidas
     const loop = () => {
       //imprimimos enemigos
       if (Math.random() > 0.99){ 
@@ -31,26 +31,31 @@ class Game {
       if(!this.isGameOver){
         window.requestAnimationFrame(loop);
       }
+      
     }
     window.requestAnimationFrame(loop);
   };
 
   updateCanvas(){
+    //this.map.update();
     this.player.update();
     this.enemies.forEach((enemy) => {
       enemy.update();
     })
-  };
+ };
 
   clearCanvas(){
     this.ctx.clearRect(0,0,this.canvas.width, this.canvas.height);
   };
 
   drawCanvas(){
+    //Imprimir mapa
+    //this.map.draw();  
     this.player.draw();
     this.enemies.forEach((enemy) => {
       enemy.draw();
     })
+      
   };
 
   checkAllCollisions(){
@@ -61,12 +66,16 @@ class Game {
         //si hay colision
         console.log("golpe!");
         this.enemies.splice(index,1);
-      }
-    });
-    
-    
-  };
-
+        //this.player.loseLive()
+          if (this.player.lives===0){
+            this.isGameOver = true;
+            this.onGameOver();
+          }
+        }
+      
+      });
+    }
+  
   gameOverCallBack(callback){
     this.onGameOver = callback;
   }

@@ -1,6 +1,7 @@
 'use strict'
 class Enemy{
   constructor(canvas,y){
+    
     this.size = 35;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');

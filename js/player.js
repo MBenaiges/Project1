@@ -39,7 +39,7 @@ class Player{
 
   checkCollisionScreen(){
     if (this.y - this.size/2 <= 0){
-      //this.direction = 0;
+      this.direction = 0;
     } else if (this.y + this.size/2 >= this.canvas.height -68){ //- "rebote" que hace en el suelo
       this.noJumping = true;
       this.y = this.canvas.height - this.size/2 -65; //65px de la altura del supuesto suelo
@@ -75,5 +75,11 @@ class Player{
   //  }
   //  return
   //}
+
+
+  // contador para perder vida
+  loseLive(){
+    this.lives--;
+  }
 
 }
