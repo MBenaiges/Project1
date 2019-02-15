@@ -1,7 +1,7 @@
 'use strict'
 class Player{
   constructor(canvas, lives){
-    this.size = 60;
+    this.size = 70;
     //this.sizeY = 80;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
@@ -11,7 +11,7 @@ class Player{
     this.speed = 3.5;
     this.direction = 0;
     this.jump=0;
-    // gravedad??
+    // gravedad
     this.gravity= .25;
     //si no esta saltando
     this.noJumping=true; 
@@ -40,14 +40,14 @@ class Player{
   checkCollisionScreen(){
     if (this.y - this.size/2 <= 0){
       //this.direction = 0;
-    } else if (this.y + this.size/2 >= this.canvas.height){
+    } else if (this.y + this.size/2 >= this.canvas.height -68){ //- "rebote" que hace en el suelo
       this.noJumping = true;
-      this.y = this.canvas.height - this.size/2 -5;
+      this.y = this.canvas.height - this.size/2 -65; //65px de la altura del supuesto suelo
     }
 
     if (this.x + (this.size/2) >= this.canvas.width){
       this.direction = 0;
-      this.x = this.canvas.width - this.size/2 - 10;
+      this.x = this.canvas.width - this.size/2;  //parte lateral de la pantalla izquierda
     }else if (this.x - (this.size/2) <= 0){
       this.direction = 0;
       this.x = this.size/2;

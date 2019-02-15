@@ -16,6 +16,12 @@ class Game {
     
     this.player = new Player(this.canvas, 1);
     const loop = () => {
+      //imprimimos enemigos
+      if (Math.random() > 0.99){ 
+        //lugar por donde queremos que salgan los enemigos
+        const y =  this.canvas.height - 82;
+        this.enemies.push(new Enemy(this.canvas, y))
+      }
       //dentro del loop
       //console.log("dentro del loop");
       this.checkAllCollisions();
@@ -31,6 +37,9 @@ class Game {
 
   updateCanvas(){
     this.player.update();
+    this.enemies.forEach((enemy) => {
+      enemy.update();
+    })
   };
 
   clearCanvas(){
@@ -39,7 +48,9 @@ class Game {
 
   drawCanvas(){
     this.player.draw();
-
+    this.enemies.forEach((enemy) => {
+      enemy.draw();
+    })
   };
 
   checkAllCollisions(){

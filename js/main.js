@@ -13,7 +13,7 @@ const main = () => {
   const buildSplashScreen = () => {
     const splashScreen = buildDom(`
   <section class="splash-screen">
-  <h1>GAME NAME</h1>
+  <h1>Undefined</h1>
   <button>New Game!</button>
   </section>
   `);
@@ -25,7 +25,7 @@ const main = () => {
   //Crea la pantalla del juego
   const buildGameScreen = () => {
     const gameScreen = buildDom(`
-    <h1>Game Screen</h1>
+    <h1>Undefined</h1>
     <section class = "game-screen">
       <canvas></canvas>
     </section>
@@ -48,15 +48,17 @@ const main = () => {
     game.gameOverCallBack(buildGameOver);
 
     game.startLoop();
-
+    
     //movimiento lateral, en eje de X
     const setPlayerDirection = (event) => {
       if (event.code === 'ArrowLeft') {
           game.player.setDirection(-1);
           game.player.x--;
+          //console.log(event);
       } else if (event.code === 'ArrowRight') {
           game.player.setDirection(1);
           game.player.x++;
+          //console.log(event);
       };
     };
 
@@ -64,14 +66,16 @@ const main = () => {
     const stop = (event) => {
       if(event.code === 'ArrowLeft' || event.code === "ArrowRight"){
         game.player.setDirection(0);
+        //console.log(event);
       }
     };
-
-    //saltar - si se apreta 'space' y no esta saltando, salta
-        const jump = (event) => {
+   
+    
+    //salta- si se apreta 'space' y no esta saltando, salta
+      const jump = (event) => {
       if (event.code === 'Space' && game.player.noJumping === true){
-        game.player.jump = -10;
-        game.player.y = game.player.y - 1;
+        game.player.jump = -9; //Altura salto
+        game.player.y = game.player.y - 8;
         game.player.noJumping = false;
       }
     }
@@ -79,9 +83,9 @@ const main = () => {
     document.addEventListener('keydown',setPlayerDirection);
     document.addEventListener('keyup',stop);
     document.addEventListener('keydown', jump);
-
+  }
     
-  };
+  
   
   //Crea la pantalla de Game Over
   const buildGameOver = () => {
@@ -95,9 +99,10 @@ const main = () => {
   const restartButton = document.querySelector('button');
   restartButton.addEventListener('click',buildGameScreen);
   }
-  
- 
+
+
   buildSplashScreen();
+
 };
 
 
