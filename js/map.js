@@ -12,14 +12,17 @@ class Map{
   }
 
   update(){
-    if(this.x >= -150){
+    if(this.x >= -7500){
       this.x = this.x + this.direction*this.speed;
     }
   }
 
   draw(){
-    this.ctxStyle = 'green';
-    this.ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);
+    var img = new Image();
+    img.src = "img/bg400x8000.png";
+    this.ctx.drawImage(img, this.x, 0);
+    //this.ctxStyle = 'green';
+    //this.ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);
   }
 
 }

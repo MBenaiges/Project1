@@ -37,7 +37,7 @@ class Game {
   };
 
   updateCanvas(){
-    //this.map.update();
+    this.map.update();
     this.player.update();
     this.enemies.forEach((enemy) => {
       enemy.update();
@@ -50,7 +50,7 @@ class Game {
 
   drawCanvas(){
     //Imprimir mapa
-    //this.map.draw();  
+    this.map.draw();  
     this.player.draw();
     this.enemies.forEach((enemy) => {
       enemy.draw();
