@@ -66,7 +66,6 @@ const main = () => {
     const stop = (event) => {
       if(event.code === 'ArrowLeft' || event.code === "ArrowRight"){
         game.player.setDirection(0);
-        //console.log(event);
       }
     };
    

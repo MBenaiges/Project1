@@ -55,6 +55,16 @@ class Game {
 
   checkAllCollisions(){
     this.player.checkCollisionScreen();
+    //comprobar colision con enemigos
+    this.enemies.forEach((enemy, index) =>{
+      if(this.player.checkCollisionEnemy(enemy, index)){
+        //si hay colision
+        console.log("golpe!");
+        this.enemies.splice(index,1);
+      }
+    });
+    
+    
   };
 
   gameOverCallBack(callback){

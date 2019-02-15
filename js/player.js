@@ -53,4 +53,27 @@ class Player{
       this.x = this.size/2;
     }
   };
+
+  // colision perder vida
+  checkCollisionEnemy(enemy){
+    const collRigth = this.x + this.size/2 +20 > enemy.x + enemy.size/2; // > s
+    const collLeft = this.x - this.size/2 -20 < enemy.x + enemy.size/2;
+    const collTop = this.y - this.size/2 < enemy.y + enemy.size/2;
+    const collBottom = this.y + this.size/2 > enemy.y - enemy.size/2;
+
+    if (collRigth && collLeft && collTop && collBottom){ //no activamos colision por top
+      return true;
+    }
+    return false;
+  }
+  //colision para matar
+  //checkCollisionKill(enemy){
+  //  const collTop = this.y - this.size/2 < enemy.y + enemy.size/2;
+
+  //  if(collTop){
+  //    return true;
+  //  }
+  //  return
+  //}
+
 }
