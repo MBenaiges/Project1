@@ -12,7 +12,7 @@ class Map{
   }
 
   update(){
-    if(this.x >= -7500){
+    if(this.x >= -8000){ 
       this.x = this.x + this.direction*this.speed;
     }
   }

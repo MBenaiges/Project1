@@ -14,7 +14,7 @@ class Game {
     //Comprobamos k ejecuta el loop
     console.log("execute loop");
     this.map = new Map (this.canvas);
-    this.player = new Player(this.canvas, 3);  //vidas
+    this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
       //imprimimos enemigos
       if (Math.random() > 0.99){ 
@@ -66,7 +66,7 @@ class Game {
         //si hay colision
         console.log("golpe!");
         this.enemies.splice(index,1);
-        //this.player.loseLive()
+        this.player.loseLive()
           if (this.player.lives===0){
             this.isGameOver = true;
             this.onGameOver();
