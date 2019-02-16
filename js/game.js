@@ -75,7 +75,7 @@ class Game {
         //si hay colision
         console.log("golpe!");
         this.enemies.splice(index,1);
-        //this.player.loseLive() //-- <Desactivar muerte
+        this.player.loseLive() //-- <Desactivar muerte
           if (this.player.lives===0){
             this.isGameOver = true;
             this.onGameOver();
