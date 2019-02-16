@@ -1,7 +1,7 @@
 'use strict'
 class Map{
   constructor(canvas){
-    this.sizeX= 900; //width 800px - 
+    this.sizeX= 800; //width 800px - 
     this.sizeY = 400; //height 400px - 
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
@@ -12,14 +12,16 @@ class Map{
   }
 
   update(){
-    if(this.x >= -8000){ 
+    if(this.x >= -7100){ 
       this.x = this.x + this.direction*this.speed;
+    } else {
+      this.speed=0;
     }
   }
 
   draw(){
     var img = new Image();
-    img.src = "img/bg400x8000.png";
+    img.src = "img/bg400x8000-2.png";
     this.ctx.drawImage(img, this.x, 0);
     //this.ctxStyle = 'green';
     //this.ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);

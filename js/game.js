@@ -5,15 +5,22 @@ class Game {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.player;
+    this.platform;
     this.map;
     this.enemies = [];
     this.isGameOver = false;
+    this.levelComplete = false;
   };
 
   startLoop(){
     //Comprobamos k ejecuta el loop
     console.log("execute loop");
     this.map = new Map (this.canvas);
+    /**IMPRESION OBSTACULO**/
+    console.log("pintamos obstaculo");
+    this.platform = new Platform (this.canvas, 500, 250, 100, 10);
+    console.log("obstaculo pintado");
+    /**IMPRESION OBSTACULO**/
     this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
       //imprimimos enemigos
@@ -23,12 +30,11 @@ class Game {
         this.enemies.push(new Enemy(this.canvas, y))
       }
       //dentro del loop
-      //console.log("dentro del loop");
       this.checkAllCollisions();
       this.updateCanvas();
       this.clearCanvas();
       this.drawCanvas();
-      if(!this.isGameOver){
+      if(!this.isGameOver && !this.levelComplete){
         window.requestAnimationFrame(loop);
       }
       
@@ -38,6 +44,7 @@ class Game {
 
   updateCanvas(){
     this.map.update();
+    this.platform.update();
     this.player.update();
     this.enemies.forEach((enemy) => {
       enemy.update();
@@ -51,6 +58,7 @@ class Game {
   drawCanvas(){
     //Imprimir mapa
     this.map.draw();  
+    this.platform.draw();
     this.player.draw();
     this.enemies.forEach((enemy) => {
       enemy.draw();
@@ -59,6 +67,7 @@ class Game {
   };
 
   checkAllCollisions(){
+    //this.player.checkCollisionsPlatform();
     this.player.checkCollisionScreen();
     //comprobar colision con enemigos
     this.enemies.forEach((enemy, index) =>{
@@ -66,17 +75,25 @@ class Game {
         //si hay colision
         console.log("golpe!");
         this.enemies.splice(index,1);
-        this.player.loseLive()
+        //this.player.loseLive() //-- <Desactivar muerte
           if (this.player.lives===0){
             this.isGameOver = true;
             this.onGameOver();
           }
         }
-      
       });
+      if (this.player.x >= 700 && this.map.speed === 0){
+        this.levelComplete = true;
+        this.onLevelCompete();
+      }
     }
   
+  levelCompleteCallback(callback){
+    this.onLevelCompete = callback;
+  }
+
   gameOverCallBack(callback){
     this.onGameOver = callback;
   }
+
 }

@@ -46,26 +46,40 @@ const main = () => {
     //Iniciamos juego
     const game = new Game(canvasElement);
     game.gameOverCallBack(buildGameOver);
-
-    game.startLoop();
+    game.levelCompleteCallback(buildLevelComplete);
     
+    game.startLoop();
+    let leftPushed=false;
+    let rightPushed=false;
     //movimiento lateral, en eje de X
     const setPlayerDirection = (event) => {
       if (event.code === 'ArrowLeft') {
           game.player.setDirection(-1);
           game.player.x--;
-          //console.log(event);
+          leftPushed=true;
       } else if (event.code === 'ArrowRight') {
           game.player.setDirection(1);
           game.player.x++;
-          //console.log(event);
+          rightPushed=true;
       };
     };
 
     //parar el jugador
     const stop = (event) => {
-      if(event.code === 'ArrowLeft' || event.code === "ArrowRight"){
-        game.player.setDirection(0);
+      if(event.code === 'ArrowLeft'){
+        if(rightPushed){
+          game.player.setDirection(1);
+        } else {
+          game.player.setDirection(0);
+        }
+        leftPushed = false;
+      }else if (event.code === 'ArrowRight'){
+        if(leftPushed){
+          game.player.setDirection(-1);
+        }else {
+          game.player.setDirection(0);
+        }
+        rightPushed=false;
       }
     };
    
@@ -73,7 +87,7 @@ const main = () => {
     //salta- si se apreta 'space' y no esta saltando, salta
       const jump = (event) => {
       if (event.code === 'Space' && game.player.noJumping === true){
-        game.player.jump = -9; //Altura salto
+        game.player.jump = -7.5; //Altura salto - modificar el salto, no saltar tanto o bajar mas rapido
         game.player.y = game.player.y - 8;
         game.player.noJumping = false;
       }
@@ -84,7 +98,18 @@ const main = () => {
     document.addEventListener('keydown', jump);
   }
     
-  
+  //Crear la pantalla del Game Complete
+  const buildLevelComplete = () => {
+    const gameLevelComplete = buildDom(`
+    <section class="level-complete">
+      <h2>Level Complete</h2>
+      <h3>Thanks for playing!</h3>
+      <button>Main Menu</button>
+    </section>`);
+
+  const mainMenuButton = document.querySelector('button');
+  mainMenuButton.addEventListener('click',buildSplashScreen);
+  }
   
   //Crea la pantalla de Game Over
   const buildGameOver = () => {

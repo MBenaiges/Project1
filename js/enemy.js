@@ -16,7 +16,11 @@ class Enemy{
   }
 
   draw(){
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(this.x,this.y - this.size/2, this.size,this.size)
+    //imagen enemigo
+    var img = new Image();
+    img.src ="img/enemy-1.png";
+    this.ctx.drawImage(img,this.x, this.y-this.size/2);
+    //this.ctx.fillStyle = 'red';
+    //this.ctx.fillRect(this.x,this.y - this.size/2, this.size,this.size)
   }
 }

@@ -37,6 +37,7 @@ class Player{
     this.direction = direction;
   }
 
+  
   checkCollisionScreen(){
     if (this.y - this.size/2 <= 0){
       this.direction = 0;
