@@ -7,7 +7,7 @@ class Map{
     this.ctx = this.canvas.getContext('2d');
     this.x = 0; 
     this.y = 0;
-    this.speed = 3;
+    this.speed = 2;
     this.direction = -1;
   }
 

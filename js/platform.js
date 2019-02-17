@@ -19,6 +19,6 @@ class Platform{
 
   draw(){
     this.ctx.fillStyle ="red";
-    this.ctx.fillRect(this.x,this.y, this.sizeX, this.sizeY);
+    this.ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);
   }
 }

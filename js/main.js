@@ -27,7 +27,8 @@ const main = () => {
     const gameScreen = buildDom(`
     <h1>Undefined</h1>
     <section class = "game-screen">
-      <canvas></canvas>
+    <div class="score">Score: </div> 
+    <canvas></canvas>
     </section>
   `);
   
@@ -116,12 +117,14 @@ const main = () => {
     const gameOverScreen = buildDom(`
     <section class="game-over">
       <h1>Game Over</h1>
-      <button>Restart</button>
+      <button>Restart</button> <button id="menu">Main Menu</button>
     </section>
     `);
   //boton de restart buton, k nos vuelve a llevar a la pantalla del juego
   const restartButton = document.querySelector('button');
   restartButton.addEventListener('click',buildGameScreen);
+  const mainMenuButton = document.getElementById('menu');
+  mainMenuButton.addEventListener('click',buildSplashScreen);
   }
 
 

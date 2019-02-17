@@ -5,9 +5,9 @@ class Game {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.player;
-    this.platform;
     this.map;
     this.enemies = [];
+    this.platforms = [];
     this.isGameOver = false;
     this.levelComplete = false;
   };
@@ -16,11 +16,10 @@ class Game {
     //Comprobamos k ejecuta el loop
     console.log("execute loop");
     this.map = new Map (this.canvas);
-    /**IMPRESION OBSTACULO**/
-    console.log("pintamos obstaculo");
-    this.platform = new Platform (this.canvas, 500, 250, 100, 10);
-    console.log("obstaculo pintado");
-    /**IMPRESION OBSTACULO**/
+    //Plataforma
+    this.platforms.push(new Platform(this.canvas, 500, 250, 250, 85));
+    this.platforms.push(new Platform(this.canvas,750, 200, 100, 135));
+    
     this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
       //imprimimos enemigos
@@ -44,7 +43,9 @@ class Game {
 
   updateCanvas(){
     this.map.update();
-    this.platform.update();
+    this.platforms.forEach((platform) => {
+      platform.update();
+    })
     this.player.update();
     this.enemies.forEach((enemy) => {
       enemy.update();
@@ -58,7 +59,9 @@ class Game {
   drawCanvas(){
     //Imprimir mapa
     this.map.draw();  
-    this.platform.draw();
+    this.platforms.forEach((platform) => {
+      platform.draw();
+    })
     this.player.draw();
     this.enemies.forEach((enemy) => {
       enemy.draw();
@@ -75,13 +78,18 @@ class Game {
         //si hay colision
         console.log("golpe!");
         this.enemies.splice(index,1);
-        this.player.loseLive() //-- <Desactivar muerte
+        //this.player.loseLive() //-- <Desactivar muerte
           if (this.player.lives===0){
             this.isGameOver = true;
             this.onGameOver();
           }
         }
       });
+      this.platforms.forEach((platform, index) =>{
+        if(this.player.checkCollisionPlatform(platform, index)){
+           console.log("platform collision")
+          }
+        });
       if (this.player.x >= 700 && this.map.speed === 0){
         this.levelComplete = true;
         this.onLevelCompete();
