@@ -36,7 +36,26 @@ class Player{
     this.direction = direction;
   }
 
-  
+  checkCollisionPlatform(platform){
+    if(this.x < platform.x + platform.sizeX &&
+      this.x + this.size > platform.x &&
+      this.y < platform.y + platform.sizeY &&
+      this.size + this.y > platform.y ){
+        if(this.y <= platform.y + platform.sizeY && this.size + this.y > platform.y + platform.sizeY){
+          this.y = platform.y + platform.sizeY + this.size;
+          //this.jump=0;
+        }
+        if(this.y + this.size >= platform.y && this.y < platform.y){
+          this.y = platform.y - this.size;
+          this.noJumping = true;
+        }
+        return true;
+      } else{
+        
+      return false;
+      }
+  };
+    
   checkCollisionScreen(){
     if (this.y - this.size <= 0){
       this.direction = 0;
@@ -56,27 +75,16 @@ class Player{
 
   // colision perder vida
   checkCollisionEnemy(enemy){
-    const collRigth = this.x + this.size  > enemy.x; // > s
+    const collRigth = this.x + this.size  > enemy.x; 
     const collLeft = this.x < enemy.x + enemy.size;
     const collTop = this.y < enemy.y + enemy.size;
     const collBottom = this.y + this.size > enemy.y;
 
-    if (collRigth && collLeft && collTop && collBottom){ //no activamos colision por top
+    if (collRigth && collLeft && collTop && collBottom){
       return true;
     }
     return false;
   }
-  
-  checkCollisionPlatform(platform){
-    if(this.x < platform.x + platform.sizeX &&
-      this.x + this.size > platform.x &&
-      this.y < platform.y + platform.sizeY &&
-      this.size + this.y > platform.y ){
-        return true
-      }
-      return false;
-  }
-  
   
   // contador para perder vida
   loseLive(){

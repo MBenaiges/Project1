@@ -7,7 +7,7 @@ class Platform{
     this.sizeY = sizeY;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-    this.speed = 0;  //plataforma fija
+    this.speed = 2;  //plataforma fija
     this.direction = -1;
   }
 
@@ -21,4 +21,5 @@ class Platform{
     this.ctx.fillStyle ="red";
     this.ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);
   }
+  
 }

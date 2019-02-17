@@ -7,6 +7,7 @@ class Game {
     this.player;
     this.map;
     this.enemies = [];
+    this.flyers = [];
     this.platforms = [];
     this.isGameOver = false;
     this.levelComplete = false;
@@ -19,6 +20,8 @@ class Game {
     //Plataforma
     this.platforms.push(new Platform(this.canvas, 500, 250, 250, 85));
     this.platforms.push(new Platform(this.canvas,750, 200, 100, 135));
+    this.platforms.push(new Platform(this.canvas,850, 200, 500, 20));
+    this.platforms.push(new Platform(this.canvas,1350, 200, 75, 135));
     
     this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
@@ -28,6 +31,13 @@ class Game {
         const y =  this.canvas.height - 82;
         this.enemies.push(new Enemy(this.canvas, y))
       }
+
+      if (Math.random() > 0.995){ 
+        const y =  this.canvas.height - 380;
+        this.flyers.push(new Flyer(this.canvas, y))
+        console.log("hola?")
+      }
+
       //dentro del loop
       this.checkAllCollisions();
       this.updateCanvas();
@@ -43,13 +53,18 @@ class Game {
 
   updateCanvas(){
     this.map.update();
+    this.flyers.forEach((flyer) => {
+      flyer.update();
+    })
     this.platforms.forEach((platform) => {
       platform.update();
     })
     this.player.update();
+    
     this.enemies.forEach((enemy) => {
       enemy.update();
     })
+    
  };
 
   clearCanvas(){
@@ -57,20 +72,21 @@ class Game {
   };
 
   drawCanvas(){
-    //Imprimir mapa
-    this.map.draw();  
+    this.map.draw(); 
+    this.flyers.forEach((flyer) => {
+      flyer.draw();
+    })  
     this.platforms.forEach((platform) => {
       platform.draw();
     })
     this.player.draw();
+    
     this.enemies.forEach((enemy) => {
       enemy.draw();
     })
-      
   };
 
   checkAllCollisions(){
-    //this.player.checkCollisionsPlatform();
     this.player.checkCollisionScreen();
     //comprobar colision con enemigos
     this.enemies.forEach((enemy, index) =>{
@@ -87,9 +103,12 @@ class Game {
       });
       this.platforms.forEach((platform, index) =>{
         if(this.player.checkCollisionPlatform(platform, index)){
-           console.log("platform collision")
-          }
-        });
+          console.log("platform")
+        }
+      });
+      
+
+      //para ganar
       if (this.player.x >= 700 && this.map.speed === 0){
         this.levelComplete = true;
         this.onLevelCompete();
