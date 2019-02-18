@@ -18,6 +18,7 @@ class Player{
   }
 
   update(){
+    this.x = this.x + this.direction * this.speed;
     this.y += this.gravity;
     //si esta saltando
     if(this.gravity < this.maxGravity){

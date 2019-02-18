@@ -56,11 +56,11 @@ const main = () => {
     const setPlayerDirection = (event) => {
       if (event.code === 'ArrowLeft') {
           game.player.setDirection(-1);
-          game.player.x--;
+          //game.player.x--;
           leftPushed=true;
       } else if (event.code === 'ArrowRight') {
           game.player.setDirection(1);
-          game.player.x++;
+          //game.player.x++;
           rightPushed=true;
       };
     };
