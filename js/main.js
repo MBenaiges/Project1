@@ -13,7 +13,7 @@ const main = () => {
   const buildSplashScreen = () => {
     const splashScreen = buildDom(`
   <section class="splash-screen">
-  <h1>Undefined</h1>
+  <h1>Plat4ms</h1>
   <button>New Game!</button>
   </section>
   `);
@@ -25,7 +25,7 @@ const main = () => {
   //Crea la pantalla del juego
   const buildGameScreen = () => {
     const gameScreen = buildDom(`
-    <h1>Undefined</h1>
+    <h1>Plat4ms</h1>
     <section class = "game-screen">
      
     <canvas></canvas>
