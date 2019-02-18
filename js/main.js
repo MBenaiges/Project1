@@ -27,7 +27,7 @@ const main = () => {
     const gameScreen = buildDom(`
     <h1>Undefined</h1>
     <section class = "game-screen">
-    <div class="score">Score: </div> 
+     
     <canvas></canvas>
     </section>
   `);
@@ -56,11 +56,11 @@ const main = () => {
     const setPlayerDirection = (event) => {
       if (event.code === 'ArrowLeft') {
           game.player.setDirection(-1);
-          //game.player.x--;
+          game.player.x--;
           leftPushed=true;
       } else if (event.code === 'ArrowRight') {
           game.player.setDirection(1);
-          //game.player.x++;
+          game.player.x++;
           rightPushed=true;
       };
     };

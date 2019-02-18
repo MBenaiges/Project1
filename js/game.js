@@ -17,11 +17,24 @@ class Game {
     //Comprobamos k ejecuta el loop
     console.log("execute loop");
     this.map = new Map (this.canvas);
-    //Plataforma
-    this.platforms.push(new Platform(this.canvas, 500, 250, 250, 85));
-    this.platforms.push(new Platform(this.canvas, 750, 200, 100, 135));
-    this.platforms.push(new Platform(this.canvas, 850, 200, 500, 20));
-    this.platforms.push(new Platform(this.canvas,1350, 200, 75, 135));
+    //Plataforma - con textura
+    this.platforms.push(new Platform(this.canvas, 500, 255, 250, 85,"img1"));
+    this.platforms.push(new Platform(this.canvas, 750, 200, 100, 135,"img2"));
+    this.platforms.push(new Platform(this.canvas, 850, 200, 500, 20, "img3"));
+    this.platforms.push(new Platform(this.canvas,1350, 200, 75, 135,"img4"));
+    //nuevas - OK
+    this.platforms.push(new Platform(this.canvas,2000,250,300,85));
+    this.platforms.push(new Platform(this.canvas,2100,150,500,185));
+    this.platforms.push(new Platform(this.canvas,3000,240,1000,95));
+    this.platforms.push(new Platform(this.canvas,3150,150,250,90));
+    this.platforms.push(new Platform(this.canvas,3600,150,250,90));
+    this.platforms.push(new Platform(this.canvas,4900,250,80,40));
+    this.platforms.push(new Platform(this.canvas,5000,175,60,40));
+    this.platforms.push(new Platform(this.canvas,5140,85,600,250));
+    this.platforms.push(new Platform(this.canvas,6000,200,100,135));
+    this.platforms.push(new Platform(this.canvas,6200,250,200,85));
+    
+
     
     this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
@@ -105,7 +118,7 @@ class Game {
       });
       this.platforms.forEach((platform, index) =>{
         if(this.player.checkCollisionPlatform(platform, index)){
-          console.log("platform")
+          //console.log("platform")
         }
       });
       
