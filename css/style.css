@@ -35,9 +35,17 @@ h1 {
   text-align: center;
 }
 
-h2 {}
+h2 {
+  text-align: center;
+  padding: 15% 0 10% 10%;
+  font-size: 35px;
+  text-decoration: underline;
+}
 
-h3 {}
+h3 {
+  text-align: center;
+  padding-bottom: 10%;
+}
 
 p {
   margin: 0;
@@ -82,10 +90,19 @@ p {
 
 
 /* ---- components ---- */
-
-button {
+#button1{
   font-size: 30px;
   margin-left: 25%;
+  margin-top: 20px;
+  text-align: center;
+  padding: 1% 4% 1% 4%;
+  border-radius: 20px;
+  border: solid 1px black;
+}
+
+button {
+  font-size: 15px;
+  margin-left: 20%;
   margin-top: 20px;
   text-align: center;
   padding: 1% 4% 1% 4%;

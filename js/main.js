@@ -14,7 +14,7 @@ const main = () => {
     const splashScreen = buildDom(`
   <section class="splash-screen">
   <h1>Plat4ms</h1>
-  <button>New Game!</button>
+  <button id="button1">New Game!</button>
   </section>
   `);
   //Boton para ir a la pantalla del juego
@@ -117,7 +117,7 @@ const main = () => {
   const buildGameOver = () => {
     const gameOverScreen = buildDom(`
     <section class="game-over">
-      <h1>Game Over</h1>
+      <h2>Game Over</h2>
       <button>Restart</button> <button id="menu">Main Menu</button>
     </section>
     `);

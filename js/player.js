@@ -28,8 +28,12 @@ class Player{
   };
 
   draw(){
-    this.ctx.fillStyle="blue";
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    var img = new Image();
+    img.src ="img/player2.png";
+    this.ctx.drawImage(img,this.x, this.y);
+    
+    //this.ctx.fillStyle="blue";
+    //this.ctx.fillRect(this.x, this.y, this.size, this.size);
   }
 
   setDirection(direction){
