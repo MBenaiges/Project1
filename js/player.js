@@ -87,8 +87,8 @@ class Player{
     if (collRigth && collLeft && collTop && collBottom){
       return true;
     }
-    if (coll)
-    return false;
+    //if (coll)
+    //return false;
   }
   
   // contador para perder vida
