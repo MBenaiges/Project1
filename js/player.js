@@ -15,6 +15,7 @@ class Player{
     this.jump=-10;
     this.noJumping=true; 
     this.lives = lives;
+    this.kill = false;
   }
 
   update(){
@@ -84,11 +85,14 @@ class Player{
     const collTop = this.y < enemy.y + enemy.size;
     const collBottom = this.y + this.size > enemy.y;
 
-    if (collRigth && collLeft && collTop && collBottom){
+    if (collRigth && collLeft &&  collBottom && collTop){
       return true;
     }
-    //if (coll)
-    //return false;
+    //if((this.y+this.size) < enemy.y + this.gravity){
+    // console.log("muerte!");
+    //  return this.kill = true;
+    //}
+    return false;
   }
   
   // contador para perder vida

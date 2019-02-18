@@ -22,17 +22,16 @@ class Game {
     this.platforms.push(new Platform(this.canvas, 750, 200, 100, 135,"img2"));
     this.platforms.push(new Platform(this.canvas, 850, 200, 500, 20, "img3"));
     this.platforms.push(new Platform(this.canvas,1350, 200, 75, 135,"img4"));
-    //nuevas - OK
-    this.platforms.push(new Platform(this.canvas,2000,250,300,85));
-    this.platforms.push(new Platform(this.canvas,2100,150,500,185));
-    this.platforms.push(new Platform(this.canvas,3000,240,1000,95));
-    this.platforms.push(new Platform(this.canvas,3150,150,250,90));
-    this.platforms.push(new Platform(this.canvas,3600,150,250,90));
-    this.platforms.push(new Platform(this.canvas,4900,250,80,40));
-    this.platforms.push(new Platform(this.canvas,5000,175,60,40));
-    this.platforms.push(new Platform(this.canvas,5140,85,600,250));
-    this.platforms.push(new Platform(this.canvas,6000,200,100,135));
-    this.platforms.push(new Platform(this.canvas,6200,250,200,85));
+    this.platforms.push(new Platform(this.canvas,2100,150,500,185,"img6"));
+    this.platforms.push(new Platform(this.canvas,2000,250,300,85,"img5"));
+    this.platforms.push(new Platform(this.canvas,3150,150,250,90,"img8"));
+    this.platforms.push(new Platform(this.canvas,3600,150,250,90,"img8"));
+    this.platforms.push(new Platform(this.canvas,3000,240,1000,95,"img7"));
+    this.platforms.push(new Platform(this.canvas,4900,250,80,40,"img9"));
+    this.platforms.push(new Platform(this.canvas,5000,175,60,40,"img10"));
+    this.platforms.push(new Platform(this.canvas,5140,85,600,250,"img11"));
+    this.platforms.push(new Platform(this.canvas,6000,200,100,135,"img12"));
+    this.platforms.push(new Platform(this.canvas,6200,250,200,85,"img13"));
     
 
     
@@ -107,24 +106,28 @@ class Game {
     this.enemies.forEach((enemy, index) =>{
       if(this.player.checkCollisionEnemy(enemy, index)){
         //si hay colision
+        if(this.player.kill === true){
+          console.log("muerte!");
+          this.enemies.splice(index,1);
+        } 
         console.log("golpe!");
         this.enemies.splice(index,1);
         //this.player.loseLive() //-- <Desactivar muerte
-          if (this.player.lives===0){
-            this.isGameOver = true;
-            this.onGameOver();
-          }
+        if (this.player.lives===0){
+          this.isGameOver = true;
+          this.onGameOver();
         }
-      });
-      this.platforms.forEach((platform, index) =>{
-        if(this.player.checkCollisionPlatform(platform, index)){
+      }
+    });
+    this.platforms.forEach((platform, index) =>{
+      if(this.player.checkCollisionPlatform(platform, index)){
           //console.log("platform")
-        }
-      });
+      }
+    });
       
 
       //para ganar
-      if (this.player.x >= 700 && this.map.speed === 0){
+    if (this.player.x >= 700 && this.map.speed === 0){
         this.levelComplete = true;
         this.onLevelCompete();
       }
