@@ -7,7 +7,7 @@ class Platform{
     this.sizeY = sizeY;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-    this.speed = 2;  //plataforma fija
+    this.speed = 2;  //speed = 0 => plataforma fija
     this.direction = -1;
   }
 

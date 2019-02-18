@@ -19,12 +19,13 @@ class Game {
     this.map = new Map (this.canvas);
     //Plataforma
     this.platforms.push(new Platform(this.canvas, 500, 250, 250, 85));
-    this.platforms.push(new Platform(this.canvas,750, 200, 100, 135));
-    this.platforms.push(new Platform(this.canvas,850, 200, 500, 20));
+    this.platforms.push(new Platform(this.canvas, 750, 200, 100, 135));
+    this.platforms.push(new Platform(this.canvas, 850, 200, 500, 20));
     this.platforms.push(new Platform(this.canvas,1350, 200, 75, 135));
     
     this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
+      //console.log(game.player.gravity);
       //imprimimos enemigos
       if (Math.random() > 0.99){ 
         //lugar por donde queremos que salgan los enemigos
@@ -32,11 +33,12 @@ class Game {
         this.enemies.push(new Enemy(this.canvas, y))
       }
 
+       /* ENEMIGOS VOLADORES 
       if (Math.random() > 0.995){ 
         const y =  this.canvas.height - 380;
         this.flyers.push(new Flyer(this.canvas, y))
-        console.log("hola?")
       }
+      */
 
       //dentro del loop
       this.checkAllCollisions();

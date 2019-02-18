@@ -4,7 +4,7 @@ class Flyer{
     this.canvas = canvas;
     this.y = y;
     this.x = 20;
-    this.sizeX = 45;
+    this.sizeX = 80;
     this.sizeY = 20;
     this.ctx = this.canvas.getContext('2d');
     this.speed = 9;

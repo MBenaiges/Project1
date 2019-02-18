@@ -2,29 +2,27 @@
 class Player{
   constructor(canvas, lives){
     this.size = 70;
-    //this.sizeY = 80;
+
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.x = 10 + this.size/2;
     this.y = this.canvas.height;
-    this.speed = 3.5;
+    this.speed = 5;
     this.direction = 0;
-    this.jump=0;
-    // gravedad
-    this.gravity= .30;
-    //si no esta saltando
+    this.gravity= 0;
+    this.maxGravity =8;
+    this.peso=.5;
+    this.jump=-10;
     this.noJumping=true; 
     this.lives = lives;
   }
 
   update(){
-    this.x = this.x + this.direction * this.speed;
+    this.y += this.gravity;
     //si esta saltando
-    if (this.noJumping === false){
-      this.y = this.y + this.jump;
-      this.jump = this.jump + this.gravity
+    if(this.gravity < this.maxGravity){
+      this.gravity += this.peso;
     }
-    
   };
 
   draw(){
@@ -41,27 +39,32 @@ class Player{
       this.x + this.size > platform.x &&
       this.y < platform.y + platform.sizeY &&
       this.size + this.y > platform.y ){
-        if(this.y <= platform.y + platform.sizeY && this.size + this.y > platform.y + platform.sizeY){
-          this.y = platform.y + platform.sizeY + this.size;
-          //this.jump=0;
-        }
-        if(this.y + this.size >= platform.y && this.y < platform.y){
+        //de arriba hacia abajo
+        if((this.y + this.size) < platform.y + this.gravity){
+          this.gravity = 0;
           this.y = platform.y - this.size;
-          this.noJumping = true;
+          this.noJumping=true;
+        }
+        // de abajo hacia arriba
+        if(this.y - this.gravity > (platform.y+platform.sizeY)){
+          this.gravity = 1;
+          this.y = platform.y - this.size; 
         }
         return true;
       } else{
-        
       return false;
       }
+
+    
   };
     
   checkCollisionScreen(){
     if (this.y - this.size <= 0){
-      this.direction = 0;
+      //this.direction = 0;
     } else if (this.y + this.size >= this.canvas.height -68){ //- "rebote" que hace en el suelo
       this.noJumping = true;
-      this.y = this.canvas.height - this.size -65; //65px de la altura del supuesto suelo
+      this.y = this.canvas.height - this.size -65; 
+      this.gravity=0;//65px de la altura del supuesto suelo
     }
 
     if (this.x + this.size >= this.canvas.width){

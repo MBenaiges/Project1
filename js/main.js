@@ -88,9 +88,10 @@ const main = () => {
     //salta- si se apreta 'space' y no esta saltando, salta
       const jump = (event) => {
       if (event.code === 'Space' && game.player.noJumping === true){
-        game.player.jump = -7.5; //Altura salto - modificar el salto, no saltar tanto o bajar mas rapido
-        game.player.y = game.player.y - 8;
         game.player.noJumping = false;
+        game.player.jump = -50; //Altura salto
+        game.player.y = game.player.y - 100;
+        
       }
     }
 
