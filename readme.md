@@ -106,9 +106,9 @@ Desde "gameOverScreen" poder ir a "gameScreen"
 
 ### Git
 
-[Link Repositorio] https://github.com/MBenaiges/Project1/
+Repository -> https://github.com/MBenaiges/Project1/
 
-[Link Deploy] Under construction
+Deploy -> https://mbenaiges.github.io/project1/
 
 ### Slides.com
 
