@@ -30,6 +30,9 @@ const main = () => {
       Lives: <div id="lives"></div>
       Score: <div id="points"></div>
     <canvas></canvas>
+    <audio autoplay loop>
+      <source src="audio/game.mp3">
+    </audio>
     </section>
   `);
   
@@ -94,11 +97,13 @@ const main = () => {
         game.player.y = game.player.y - 100;
         
       }
+      
     }
 
     document.addEventListener('keydown',setPlayerDirection);
     document.addEventListener('keyup',stop);
     document.addEventListener('keydown', jump);
+    
   }
     
   //Crear la pantalla del Game Complete
