@@ -24,8 +24,9 @@ class Player{
     this.IMAGE_NUMBER = 3;
     this.COUNTER_FRAMES = 8;
 
+
     this.IMAGE_NUMBER_JUMP = 2;
-    this.COUNTER_FRAME_JUMP = 10;
+    this.COUNTER_FRAME_JUMP = 8;
   }
   
   //immo(){
@@ -72,10 +73,10 @@ class Player{
       this.ctx.drawImage(imgPlayer,this.x, this.y);
     }
     this.countJump ++;
-    if (this.count === this.COUNTER_FRAMES_JUMP && this.imageX < this.size * this.IMAGE_NUMBER_JUMP) {
+    if (this.countJump === this.COUNTER_FRAMES_JUMP && this.imageX < this.size * this.IMAGE_NUMBER_JUMP) {
       this.imageX += this.size;
       this.countJump = 0;
-    } else if (this.count === this.COUNTER_FRAMES_JUMP && this.imageX >= this.size * this.IMAGE_NUMBER_JUMP) {
+    } else if (this.countJump === this.COUNTER_FRAMES_JUMP && this.imageX >= this.size * this.IMAGE_NUMBER_JUMP) {
       this.imageX = 0;
       this.countJump = 0;
     }
