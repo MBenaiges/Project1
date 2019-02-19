@@ -16,7 +16,15 @@ class Player{
     this.noJumping=true; 
     this.lives = lives;
     this.kill = false;
+    this.isImmortal = false;
   }
+  
+  //immo(){
+  //  if(this.isImmortal=true){
+
+  //  }
+  //}
+  
 
   update(){
     this.x = this.x + this.direction * this.speed;
@@ -28,12 +36,12 @@ class Player{
   };
 
   draw(){
-    var img = new Image();
-    img.src ="img/player2.png";
-    this.ctx.drawImage(img,this.x, this.y);
+    //var img = new Image();
+    //img.src ="img/player2.png";
+    //this.ctx.drawImage(img,this.x, this.y);
     
-    //this.ctx.fillStyle="blue";
-    //this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    this.ctx.fillStyle="blue";
+    this.ctx.fillRect(this.x, this.y, this.size, this.size);
   }
 
   setDirection(direction){
@@ -89,17 +97,17 @@ class Player{
     const collTop = this.y < enemy.y + enemy.size;
     const collBottom = this.y + this.size > enemy.y;
 
-    if (collRigth && collLeft &&  collBottom && collTop){
+    const isColliding = collRigth && collLeft &&  collBottom && collTop;
+    
+    if(this.gravity && isColliding){
+      this.kill = true;
+    }      
+    if (isColliding){
       return true;
     }
-    //if((this.y+this.size) < enemy.y + this.gravity){
-    // console.log("muerte!");
-    //  return this.kill = true;
-    //}
     return false;
   }
   
-  // contador para perder vida
   loseLive(){
     this.lives--;
   }

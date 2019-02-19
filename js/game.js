@@ -35,9 +35,8 @@ class Game {
     
 
     
-    this.player = new Player(this.canvas, 1);  //vidas
+    this.player = new Player(this.canvas, 3);  //vidas
     const loop = () => {
-      //console.log(game.player.gravity);
       //imprimimos enemigos
       if (Math.random() > 0.99){ 
         //lugar por donde queremos que salgan los enemigos
@@ -109,13 +108,16 @@ class Game {
         if(this.player.kill === true){
           console.log("muerte!");
           this.enemies.splice(index,1);
-        } 
-        console.log("golpe!");
-        this.enemies.splice(index,1);
-        this.player.loseLive() //-- <Desactivar muerte
-        if (this.player.lives===0){
-          this.isGameOver = true;
-          this.onGameOver();
+          this.player.kill = false;
+          // no vidas
+        } else {
+          this.enemies.splice(index,1);
+          console.log("golpe!");
+          this.player.loseLive(); //-- <Desactivar muerte
+          if (this.player.lives===0){
+              this.isGameOver = true;
+              this.onGameOver();
+            }
         }
       }
     });
