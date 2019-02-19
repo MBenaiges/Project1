@@ -111,9 +111,12 @@ class Game {
           this.player.kill = false;
           // no vidas
         } else {
-          this.enemies.splice(index,1);
+          //this.enemies.splice(index,1);
           console.log("golpe!");
-          this.player.loseLive(); //-- <Desactivar muerte
+          this.player.loseLive();//-- <Desactivar muerte
+          // se activa el immo
+          this.player.immo(); 
+          console.log("immo!");
           if (this.player.lives===0){
               this.isGameOver = true;
               this.onGameOver();

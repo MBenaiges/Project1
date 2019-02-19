@@ -29,11 +29,14 @@ class Player{
     this.COUNTER_FRAME_JUMP = 8;
   }
   
-  //immo(){
-  //  if(this.isImmortal=true){
-
-  //  }
-  //}
+  immo(){
+    if(!this.isImmortal){
+      this.isImmortal = true;
+      setTimeout (() => {
+        this.isImmortal = false;
+      },3000);
+    }
+  }
   
 
   update(){
@@ -80,11 +83,12 @@ class Player{
       this.imageX = 0;
       this.countJump = 0;
     }
-    if(this.gravity > 1){
+    if(this.gravity > 1 || this.isImmortal ===true){
       var imgPlayer = new Image();
       imgPlayer.src = "img/player-jump.png";
       this.ctx.drawImage(imgPlayer,this.imageX,0, this.size, this.size, this.x, this.y, this.size, this.size);
     }
+    
 
   }
 
@@ -153,7 +157,8 @@ class Player{
   }
   
   loseLive(){
-    this.lives--;
+    if(this.isImmortal===false){
+      this.lives--;
+    }
   }
-
 }
