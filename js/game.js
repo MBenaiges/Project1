@@ -49,7 +49,7 @@ class Game {
     this.itemsPoints.push(new ItemPoints(this.canvas, 5450, 270));
 
     
-    this.player = new Player(this.canvas, 1);  //vidas
+    this.player = new Player(this.canvas, 2);  //vidas
     const loop = () => {
       //imprimimos enemigos
       if (Math.random() > 0.99){ 
