@@ -19,9 +19,13 @@ class Player{
     this.isImmortal = false;
     //SPRITE
     this.count = 0;
+    this.countJump = 0;
     this.imageX = 0;
     this.IMAGE_NUMBER = 3;
     this.COUNTER_FRAMES = 8;
+
+    this.IMAGE_NUMBER_JUMP = 2;
+    this.COUNTER_FRAME_JUMP = 10;
   }
   
   //immo(){
@@ -51,9 +55,36 @@ class Player{
       this.imageX = 0;
       this.count = 0;
     }
-    var imgPlayer = new Image();
-    imgPlayer.src = "img/playerRight.png";
-    this.ctx.drawImage(imgPlayer,this.imageX,0, this.size, this.size, this.x, this.y, this.size, this.size);
+    
+    if(this.direction===1){
+      var imgPlayer = new Image();
+      imgPlayer.src = "img/playerRight.png";
+      this.ctx.drawImage(imgPlayer,this.imageX,0, this.size, this.size, this.x, this.y, this.size, this.size);
+    }
+    if (this.direction===-1){
+      var imgPlayer = new Image();
+      imgPlayer.src = "img/playerLeft.png";
+      this.ctx.drawImage(imgPlayer,this.imageX,0, this.size, this.size, this.x, this.y, this.size, this.size);
+    }
+    if(this.direction===0){
+      var imgPlayer = new Image();
+      imgPlayer.src = "img/stop-right.png";
+      this.ctx.drawImage(imgPlayer,this.x, this.y);
+    }
+    this.countJump ++;
+    if (this.count === this.COUNTER_FRAMES_JUMP && this.imageX < this.size * this.IMAGE_NUMBER_JUMP) {
+      this.imageX += this.size;
+      this.countJump = 0;
+    } else if (this.count === this.COUNTER_FRAMES_JUMP && this.imageX >= this.size * this.IMAGE_NUMBER_JUMP) {
+      this.imageX = 0;
+      this.countJump = 0;
+    }
+    if(this.gravity > 1){
+      var imgPlayer = new Image();
+      imgPlayer.src = "img/player-jump.png";
+      this.ctx.drawImage(imgPlayer,this.imageX,0, this.size, this.size, this.x, this.y, this.size, this.size);
+    }
+
   }
 
   setDirection(direction){
