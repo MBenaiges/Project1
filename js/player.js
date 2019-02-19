@@ -17,6 +17,11 @@ class Player{
     this.lives = lives;
     this.kill = false;
     this.isImmortal = false;
+    //SPRITE
+    this.count = 0;
+    this.imageX = 0;
+    this.IMAGE_NUMBER = 3;
+    this.COUNTER_FRAMES = 8;
   }
   
   //immo(){
@@ -36,12 +41,19 @@ class Player{
   };
 
   draw(){
-    //var img = new Image();
-    //img.src ="img/player2.png";
-    //this.ctx.drawImage(img,this.x, this.y);
-    
-    this.ctx.fillStyle="blue";
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    //this.ctx.fillStyle="blue";
+    //this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    this.count ++;
+    if (this.count === this.COUNTER_FRAMES && this.imageX < this.size * this.IMAGE_NUMBER) {
+      this.imageX += this.size;
+      this.count = 0;
+    } else if (this.count === this.COUNTER_FRAMES && this.imageX >= this.size * this.IMAGE_NUMBER) {
+      this.imageX = 0;
+      this.count = 0;
+    }
+    var imgPlayer = new Image();
+    imgPlayer.src = "img/playerRight.png";
+    this.ctx.drawImage(imgPlayer,this.imageX,0, this.size, this.size, this.x, this.y, this.size, this.size);
   }
 
   setDirection(direction){
