@@ -52,6 +52,8 @@ class Game {
       */
 
       //dentro del loop
+
+      this.player.getLives();
       this.checkAllCollisions();
       this.updateCanvas();
       this.clearCanvas();
@@ -109,6 +111,8 @@ class Game {
           console.log("muerte!");
           this.enemies.splice(index,1);
           this.player.kill = false;
+          this.player.getPoints();
+          console.log(this.player.points);
           // no vidas
         } else {
           //this.enemies.splice(index,1);

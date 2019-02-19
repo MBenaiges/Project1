@@ -2,7 +2,6 @@
 class Player{
   constructor(canvas, lives){
     this.size = 70;
-
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.x = 10 + this.size/2;
@@ -23,10 +22,10 @@ class Player{
     this.imageX = 0;
     this.IMAGE_NUMBER = 3;
     this.COUNTER_FRAMES = 8;
-
-
     this.IMAGE_NUMBER_JUMP = 2;
     this.COUNTER_FRAME_JUMP = 8;
+
+    this.points = 0;
   }
   
   immo(){
@@ -34,7 +33,7 @@ class Player{
       this.isImmortal = true;
       setTimeout (() => {
         this.isImmortal = false;
-      },3000);
+      },1500);
     }
   }
   
@@ -160,5 +159,13 @@ class Player{
     if(this.isImmortal===false){
       this.lives--;
     }
+  }
+
+  getPoints(){
+    this.points += 100;
+    document.getElementById('points').innerText = this.points;
+  }
+  getLives(){
+    document.getElementById('lives').innerText = this.lives;
   }
 }

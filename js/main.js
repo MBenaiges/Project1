@@ -27,7 +27,8 @@ const main = () => {
     const gameScreen = buildDom(`
     <h1>Plat4ms</h1>
     <section class = "game-screen">
-     
+      Lives: <div id="lives"></div>
+      Score: <div id="points"></div>
     <canvas></canvas>
     </section>
   `);
@@ -101,26 +102,32 @@ const main = () => {
   }
     
   //Crear la pantalla del Game Complete
-  const buildLevelComplete = () => {
+  const buildLevelComplete = (points) => {
     const gameLevelComplete = buildDom(`
     <section class="level-complete">
       <h2>Level Complete</h2>
       <h3>Thanks for playing!</h3>
+      <div id="points"> Points </div>
       <button>Main Menu</button>
     </section>`);
 
+  document.getElementById('points').innerText = points;
   const mainMenuButton = document.querySelector('button');
   mainMenuButton.addEventListener('click',buildSplashScreen);
   }
   
   //Crea la pantalla de Game Over
-  const buildGameOver = () => {
+  const buildGameOver = (points) => {
     const gameOverScreen = buildDom(`
     <section class="game-over">
       <h2>Game Over</h2>
-      <button>Restart</button> <button id="menu">Main Menu</button>
+      <div id="points"></div> Points!
+      <div>
+        <button>Restart</button> <button id="menu">Main Menu</button>
+      </div>
     </section>
     `);
+    document.getElementById('points').innerText = points;
   //boton de restart buton, k nos vuelve a llevar a la pantalla del juego
   const restartButton = document.querySelector('button');
   restartButton.addEventListener('click',buildGameScreen);
