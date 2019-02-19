@@ -11,6 +11,8 @@ class Game {
     this.platforms = [];
     this.isGameOver = false;
     this.levelComplete = false;
+    this.itemsLife = [];
+    this.itemsPoints = [];
   };
 
   startLoop(){
@@ -33,9 +35,21 @@ class Game {
     this.platforms.push(new Platform(this.canvas,6000,200,100,135,"img12"));
     this.platforms.push(new Platform(this.canvas,6200,250,200,85,"img13"));
     
+    //Items Life
+    this.itemsLife.push(new ItemLife(this.canvas, 2800,50));
+    this.itemsLife.push(new ItemLife(this.canvas, 6030, 130));
+
+    //Items Points
+    this.itemsPoints.push(new ItemPoints(this.canvas, 625, 200));
+    this.itemsPoints.push(new ItemPoints(this.canvas, 1550, 60));
+    this.itemsPoints.push(new ItemPoints(this.canvas, 1100, 250));
+    this.itemsPoints.push(new ItemPoints(this.canvas, 3250, 60));
+    this.itemsPoints.push(new ItemPoints(this.canvas, 3725, 60));
+    this.itemsPoints.push(new ItemPoints(this.canvas, 5030, 30));
+    this.itemsPoints.push(new ItemPoints(this.canvas, 5450, 270));
 
     
-    this.player = new Player(this.canvas, 3);  //vidas
+    this.player = new Player(this.canvas, 1);  //vidas
     const loop = () => {
       //imprimimos enemigos
       if (Math.random() > 0.99){ 
@@ -52,7 +66,6 @@ class Game {
       */
 
       //dentro del loop
-
       this.player.getLives();
       this.checkAllCollisions();
       this.updateCanvas();
@@ -79,6 +92,12 @@ class Game {
     this.enemies.forEach((enemy) => {
       enemy.update();
     })
+    this.itemsLife.forEach((itemLife) => {
+      itemLife.update();
+    })
+    this.itemsPoints.forEach((itemPoints) => {
+      itemPoints.update();
+    })
     
  };
 
@@ -95,7 +114,12 @@ class Game {
       platform.draw();
     })
     this.player.draw();
-    
+    this.itemsLife.forEach((itemLife) => {
+      itemLife.draw();
+    })
+    this.itemsPoints.forEach((itemPoints) => {
+      itemPoints.draw();
+    })
     this.enemies.forEach((enemy) => {
       enemy.draw();
     })
@@ -133,7 +157,19 @@ class Game {
           //console.log("platform")
       }
     });
-      
+    this.itemsLife.forEach((item, index) => {
+      if(this.player.checkCollisionItem(item,index)){
+       this.player.lives++;
+       this.itemsLife.splice(index,1);
+      }
+    });
+
+    this.itemsPoints.forEach((item, index) => {
+      if(this.player.checkCollisionItem(item,index)){
+       this.player.getPointsItem();
+       this.itemsPoints.splice(index,1);
+      }
+    }); 
 
       //para ganar
     if (this.player.x >= 700 && this.map.speed === 0){

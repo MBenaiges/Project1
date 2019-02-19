@@ -111,7 +111,7 @@ const main = () => {
       <button>Main Menu</button>
     </section>`);
 
-  document.getElementById('points').innerText = points;
+  document.getElementById('points').innerText = this.points;
   const mainMenuButton = document.querySelector('button');
   mainMenuButton.addEventListener('click',buildSplashScreen);
   }

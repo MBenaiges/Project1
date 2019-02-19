@@ -154,6 +154,20 @@ class Player{
     }
     return false;
   }
+
+  checkCollisionItem(item){
+    const collRigth = this.x + this.size  > item.x; 
+    const collLeft = this.x < item.x + item.size;
+    const collTop = this.y < item.y + item.size;
+    const collBottom = this.y + this.size > item.y;
+    const isColliding = collRigth && collLeft &&  collBottom && collTop;
+
+    if(isColliding){
+      return true;
+    }
+    return false;
+  }
+
   
   loseLive(){
     if(this.isImmortal===false){
@@ -163,6 +177,10 @@ class Player{
 
   getPoints(){
     this.points += 100;
+    document.getElementById('points').innerText = this.points;
+  }
+  getPointsItem(){
+    this.points += 500;
     document.getElementById('points').innerText = this.points;
   }
   getLives(){
