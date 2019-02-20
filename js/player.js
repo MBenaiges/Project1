@@ -177,13 +177,14 @@ class Player{
 
   getPoints(){
     this.points += 100;
-    document.getElementById('points').innerText = this.points;
+    document.getElementById('points').innerText = `SCORE: ${this.points}`;
   }
   getPointsItem(){
     this.points += 500;
-    document.getElementById('points').innerText = this.points;
+    document.getElementById('points').innerText = `SCORE: ${this.points}`;
   }
   getLives(){
-    document.getElementById('lives').innerText = this.lives;
+    document.getElementById('lives').innerText = `LIVES: ${this.lives}`;
   }
+  
 }

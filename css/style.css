@@ -131,4 +131,14 @@ button:hover{
   background-size: 100% 100%;
   background-position: 0 0; */
 }
+.in-line{
+  display: flex;
+  justify-content: space-between;
+}
+#live{
+  display: inline;
+}
+.button-2{
+  margin-left: 35%;
+}
 

@@ -147,7 +147,7 @@ class Game {
           console.log("immo!");
           if (this.player.lives===0){
               this.isGameOver = true;
-              this.onGameOver();
+              this.onGameOver(this.player.points);
             }
         }
       }
@@ -174,7 +174,7 @@ class Game {
       //para ganar
     if (this.player.x >= 700 && this.map.speed === 0){
         this.levelComplete = true;
-        this.onLevelCompete();
+        this.onLevelCompete(this.player.points);
       }
     }
   

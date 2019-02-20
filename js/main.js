@@ -27,12 +27,16 @@ const main = () => {
     const gameScreen = buildDom(`
     <h1>Plat4ms</h1>
     <section class = "game-screen">
-      Lives: <div id="lives"></div>
-      Score: <div id="points"></div>
+    <div class="in-line">
+      <div id="lives"></div> <div id="points"></div>
+    </div>
     <canvas></canvas>
     <audio autoplay loop>
       <source src="audio/game.mp3">
     </audio>
+      <audio id="jump">
+        <source src="audio/jump1.mp3">
+      </audio>
     </section>
   `);
   
@@ -95,7 +99,10 @@ const main = () => {
         game.player.noJumping = false;
         game.player.jump = -50; //Altura salto
         game.player.y = game.player.y - 100;
-        
+        /*
+        var audio = document.getElementById("jump");
+        audio.play();
+        */
       }
       
     }
@@ -111,12 +118,12 @@ const main = () => {
     const gameLevelComplete = buildDom(`
     <section class="level-complete">
       <h2>Level Complete</h2>
-      <h3>Thanks for playing!</h3>
-      <div id="points"> Points </div>
-      <button>Main Menu</button>
+      <h3>Thanks for playing!
+      <div id="points"> Points </div></h3>
+      <button class="button-2">Main Menu</button>
     </section>`);
 
-  document.getElementById('points').innerText = this.points;
+  document.getElementById('points').innerText = `${points} Points!`;
   const mainMenuButton = document.querySelector('button');
   mainMenuButton.addEventListener('click',buildSplashScreen);
   }
@@ -126,13 +133,15 @@ const main = () => {
     const gameOverScreen = buildDom(`
     <section class="game-over">
       <h2>Game Over</h2>
-      <div id="points"></div> Points!
+      <h3>
+      <div id="points"></div>
+      </h3>
       <div>
         <button>Restart</button> <button id="menu">Main Menu</button>
       </div>
     </section>
     `);
-    document.getElementById('points').innerText = points;
+    document.getElementById('points').innerText = `${points} Points!`;
   //boton de restart buton, k nos vuelve a llevar a la pantalla del juego
   const restartButton = document.querySelector('button');
   restartButton.addEventListener('click',buildGameScreen);
@@ -140,12 +149,8 @@ const main = () => {
   mainMenuButton.addEventListener('click',buildSplashScreen);
   }
 
-
   buildSplashScreen();
 
 };
-
-
-
 
 window.addEventListener('load', main);
