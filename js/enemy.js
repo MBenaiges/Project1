@@ -19,10 +19,7 @@ class Enemy{
     this.x = this.x + this.direction*this.speed;
   }
 
-  // IMAGEN ESTATICA
   draw(){
-    //imagen enemigo
-
     this.count ++;
     if (this.count === this.COUNTER_FRAMES && this.imageX < this.size * this.IMAGE_NUMBER) {
       this.imageX += this.size;
@@ -39,10 +36,4 @@ class Enemy{
     //this.ctx.fillRect(this.x,this.y - this.size/2, this.size,this.size)
     
     }
- //SPRITE
- /* draw(){
-    var img = new Image();
-    img.src = "img/enemy.png";
-    img.addEventListener("load", loadImage, false)
-  }*/
 }
