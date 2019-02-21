@@ -31,15 +31,17 @@ const main = () => {
       <div id="lives"></div> <div id="points"></div>
     </div>
     <canvas></canvas>
-    <audio autoplay loop>
-      <source src="audio/game.mp3">
-    </audio>
+  `);
+  //si se quiere audio debajo del canvas
+  /* <audio autoplay loop>
+        <source src="audio/game.mp3">
+      </audio>
       <audio id="jump">
         <source src="audio/jump1.mp3">
       </audio>
     </section>
-  `);
-  
+   */
+
     //Creamos canvas
     const width = document.querySelector('.game-screen').offsetWidth;
     const height = document.querySelector('.game-screen').offsetHeight;
