@@ -182,14 +182,14 @@ https://slides.com/mbenaiges/deck/#/
 
 CONTROLS
 -----------
-Left arrow - Move left
-Right arrow - Move right
-space - jump
+- Left arrow - Move left
+- Right arrow - Move right
+- space - jump
 
 ITEMS
 ---------
-Rice - +1 Life
-Ball - +500 points
+- Rice - +1 Life
+- Ball - +500 points
 
 
 
